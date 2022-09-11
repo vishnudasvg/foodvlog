@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+
+    <div class="tm-hero d-flex justify-content-center align-items-center" data-parallax="scroll" data-image-src={% static "hm/img/well-foods-microbiome-videoSixteenByNine3000-v2.jpg" %}>
+<div>
+<form class="d-flex tm-search-form" action="{% url 'search' %}" method="get">
+            <input class="form-control tm-search-input" type="search" placeholder="Enter Item Name To Search" aria-label="Search" name="q">
+            <button class="btn btn-outline-success tm-search-btn" type="submit">
+                <i class="fas fa-search"></i>
+            </button>
+        </form>
+</div>
+    </div>
+
+    <div class="container-fluid tm-container-content tm-mt-60">
+        <div class="row mb-4">
+            <center>
+            <h2 class="col-6 tm-text-primary">
+                Quality Food Products
+            </h2>
+                </center>
+        </div>
+    </div>
+            <div class="container">
+
+  <div class="dropdown">
+    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" >Filter
+    </button>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="/">All</a>
+        {% for i in ct %}
+      <a class="dropdown-item" href={{i.get_url}}>{{i.name}}</a>
+        {% endfor %}
+    </div>
+  </div>
+</div>
+
+<br>
+        <div class="container-fluid">
+
+
+  <div class="col-md-4">
+      <center>{% for i in pg.object_list %}
+          <div class="card-float">
+                <div class="card bg-light mb-3" >
+                    <a class="imgover" href={{ i.get_url }} >
+                    <img class="card img-top" src={{ i.img.url }} alt="Image" class="" style="align:center; float:center; height:400px; width:495px;"></a>
+
+                        <h3 class="card-title">{{i.name}}</h3>
+                        <p class="card-text">{{i.desc|truncatewords:17}}</p>
+                        <p>price : {{i.price}}</p>
+                        <br>
+                        <p>stock : {{i.stock}}</p>
+                </div>
+          </div>
+                          </center>
+      {% endfor %}
+       </div>
+
+
+
+
+
+
+        </div>
+
+    </div>
+<br>
+    <center>
+        {% for p in pg.paginator.page_range %}
+        <a href="?page={{p}}" class="btn btn-dark btn-sm{% if pg.number == p %} active {% endif %}">{{p}}</a>
+        {% endfor %}
+    </center>
+    <footer class="tm-bg-gray pt-5 pb-3 tm-text-gray tm-footer">
+        <div class="container-fluid tm-container-small">
+            <div class="row">
+
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12 px-5 mb-5">
+                    <ul class="tm-social-links d-flex justify-content-end pl-0 mb-5">
+                        <li class="mb-2"><a href="https://facebook.com"><i class="fab fa-facebook"></i></a></li>
+                        <li class="mb-2"><a href="https://twitter.com"><i class="fab fa-twitter"></i></a></li>
+                        <li class="mb-2"><a href="https://instagram.com"><i class="fab fa-instagram"></i></a></li>
+                        <li class="mb-2"><a href="https://pinterest.com"><i class="fab fa-pinterest"></i></a></li>
+                    </ul>
+                    <a href="#" class="tm-text-gray text-right d-block mb-2">Terms of Use</a>
+                    <a href="#" class="tm-text-gray text-right d-block">Privacy Policy</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 col-md-7 col-12 px-5 mb-3">
+                    Copyright 2020 Catalog-Z Company. All rights reserved.
+                </div>
+                <div class="col-lg-4 col-md-5 col-12 px-5 text-right">
+                    Designed by <a href="https://templatemo.com" class="tm-text-gray" rel="sponsored" target="_parent">TemplateMo</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src={% static "hm/js/plugins.js" %}></script>
+    <script>
+        $(window).on("load", function() {
+            $('body').addClass('loaded');
+        });
+    </script>
+</body>
+</html>
+
+{% endblock %}

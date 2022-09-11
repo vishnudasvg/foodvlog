@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+
+<section class="h-100" style="background-color: #eee;">
+  <div class="container h-100 py-5">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-10">
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h3 class="fw-normal mb-0 text-black">Shopping Cart</h3>
+          <div>
+            <p class="mb-0"><span class="text-muted">Sort by:</span> <a href="#!" class="text-body">price <i
+                  class="fas fa-angle-down mt-1"></i></a></p>
+          </div>
+        </div>
+
+        {% for i in ci %}
+        <div class="card rounded-3 mb-4">
+          <div class="card-body p-4">
+            <div class="row d-flex justify-content-between align-items-center">
+              <div class="col-md-3 col-lg-1 col-xl-0 offset-lg-1">
+                <a href="{% url 'remove' i.prodt.id %}" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
+              </div>
+              <div class="col-md-2 col-lg-2 col-xl-2">
+                <a href="{{i.prodt.get_url}}">
+                <img
+                  src="{{i.prodt.img.url }}"
+                  class="img-fluid rounded-3" alt="{{i.prodt.name}}"></a>
+              </div>
+              <div class="col-md-3 col-lg-3 col-xl-3">
+                <p class="lead fw-normal mb-2">{{i.prodt.name}}</p>
+                <p><span class="text-muted">${{i.prodt.price}} * 1</span></p>
+                 <p></p>
+                <p>Qty : {{i.quan}}</p>
+              </div>
+
+
+              <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+               <span class="price"><h5 class="mb-0">$ {{i.total }}</h5>
+                 <br>
+                 <a href="{% url 'addcart' i.prodt.id %}"> + </a>
+                 {{i.quan}}<a href="{% url 'cart_decrement' i.prodt.id %}"> - </a></span>
+
+
+
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+          {% endfor %}
+        <div class="card">
+          <div class="card-body">
+            <div class="float-right">
+            <p>  <span class="price" style="color:red"><b>Total:${{t}}</b></span></p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="card">
+          <div class="card-body">
+            <button type="button" class="btn btn-warning btn-block btn-lg">Proceed to Pay</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</section>
+{% endblock %}

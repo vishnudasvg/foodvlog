@@ -1,0 +1,59 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>avodha shopping</title>
+    <link rel="stylesheet" href={% static "hm/css/bootstrap.min.css" %} >
+    <link rel="stylesheet" href={% static "hm/fontawesome/css/all.min.css" %}>
+    <link rel="stylesheet" href={% static "hm/css/templatemo-style.css" %} >
+
+</head>
+<body>
+    <!-- Page Loader -->
+
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-film mr-2"></i>
+                Avodha Shop
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+
+
+
+
+                <li class="nav-item">
+                    <a class="nav-link nav-link-2" href="/">Home</a>
+                </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link nav-link-4" href="#">Hai {{user.username}}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-link-3" href="{% url 'cartDetails' %}"><i class="fa fa-shopping-cart" style="font-size:24px">{{itc}}</i></a>
+                </li>
+                 <li class="nav-item">
+                    <a class="nav-link nav-link-4" href="accounts/logout">Logout</a>
+                </li>
+
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link nav-link-3" href="accounts/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-link-4" href="accounts/register">Register</a>
+                </li>
+                {% endif %}
+
+            </ul>
+            </div>
+        </div>
+    </nav>
+
+{% block content %}
+{% endblock %}
