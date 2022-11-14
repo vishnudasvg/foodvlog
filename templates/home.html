@@ -12,61 +12,56 @@
             </button>
         </form>
 </div>
-    </div>
-
-    <div class="container-fluid tm-container-content tm-mt-60">
-        <div class="row mb-4">
-            <center>
-            <h2 class="col-6 tm-text-primary">
-                Quality Food Products
-            </h2>
-                </center>
-        </div>
-    </div>
-            <div class="container">
-
-  <div class="dropdown">
-    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" >Filter
-    </button>
-    <div class="dropdown-menu">
-      <a class="dropdown-item" href="/">All</a>
-        {% for i in ct %}
-      <a class="dropdown-item" href={{i.get_url}}>{{i.name}}</a>
-        {% endfor %}
-    </div>
-  </div>
 </div>
 
-<br>
-        <div class="container-fluid">
-
-
-  <div class="col-lg-4">
-      <center>{% for i in pg.object_list %}
-          <div class="card-float">
-                <div class="card bg-light mb-3" >
-                    <a class="imgover" href={{ i.get_url }} >
-                    <img class="card img-top" src={{ i.img.url }} alt="Image" class="" style="align:center; float:center; height:400px; width:480px;"></a>
-
-                        <h3 class="card-title">{{i.name}}</h3>
-                        <p class="card-text">{{i.desc|truncatewords:17}}</p>
-                        <p>price : {{i.price}}</p>
-                        <br>
-                        <p>stock : {{i.stock}}</p>
-                </div>
-          </div>
-                          </center>
-      {% endfor %}
-       </div>
-
-
-
-
-
-
+        <div class="container-fluid tm-container-content tm-mt-60">
+            <div class="row mb-4">
+                <center>
+                <h2 class="col-6 tm-text-primary">
+                    Quality Food Products
+                </h2>
+                    </center>
+            </div>
         </div>
 
+    <div class="container">
+
+          <div class="dropdown">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" >Filter
+            </button>
+                <div class="dropdown-menu">
+                      <a class="dropdown-item" href="/">All</a>
+                        {% for i in ct %}
+                      <a class="dropdown-item" href={{i.get_url}}>{{i.name}}</a>
+                        {% endfor %}
+                </div>
+          </div>
     </div>
+
+<br>
+
+    <div class="container-fluid">
+
+          <div class="col-lg-4">
+              <center>{% for i in pg.object_list %}
+                  <div class="card-float">
+                        <div class="card bg-light mb-3" >
+                            <a class="imgover" href={{ i.get_url }} >
+                            <img class="card img-top" src={{ i.img.url }} alt="Image" class="" style="align:center; float:center; height:400px; width:480px;"></a>
+
+                                <h3 class="card-title">{{i.name}}</h3>
+                                <p class="card-text">{{i.desc|truncatewords:17}}</p>
+                                <p>price : {{i.price}}</p>
+                                <br>
+                                <p>stock : {{i.stock}}</p>
+                        </div>
+                  </div>
+                                  </center>
+              {% endfor %}
+               </div>
+    </div>
+
+</div>
 <br>
     <center>
         {% for p in pg.paginator.page_range %}
