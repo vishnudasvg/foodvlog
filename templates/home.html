@@ -41,12 +41,12 @@
         <div class="container-fluid">
 
 
-  <div class="col-md-4">
+  <div class="col-lg-4">
       <center>{% for i in pg.object_list %}
           <div class="card-float">
                 <div class="card bg-light mb-3" >
                     <a class="imgover" href={{ i.get_url }} >
-                    <img class="card img-top" src={{ i.img.url }} alt="Image" class="" style="align:center; float:center; height:400px; width:495px;"></a>
+                    <img class="card img-top" src={{ i.img.url }} alt="Image" class="" style="align:center; float:center; height:400px; width:480px;"></a>
 
                         <h3 class="card-title">{{i.name}}</h3>
                         <p class="card-text">{{i.desc|truncatewords:17}}</p>

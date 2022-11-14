@@ -18,9 +18,6 @@ def login(request):
 
     else:
         return render(request, "login.html")
-def logout(request):
-    auth.logout(request)
-    return redirect('/')
 
 
 def register(request):
@@ -38,12 +35,16 @@ def register(request):
                 messages.Info(request, 'Username Taken')
                 return redirect('register')
             else:
-                user = User.objects.create_user(first_name=name,username=username,email=email,password=password1)
-                user.save()
+                user = User.objects.create_user(first_name=name, username=username, email=email, password=password1)
+                user.save();
                 print('user created')
-            return redirect('/')
+                return redirect('login')
         else:
             print("password not matched")
     else:
         return render(request, 'registration.html')
 
+
+def logout(request):
+    auth.logout(request)
+    return redirect('/')
